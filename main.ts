@@ -33,6 +33,7 @@ bluetooth.onBluetoothConnected(function () {
     connected = 1
     while (connected == 1) {
         uartdata = bluetooth.uartReadUntil(serial.delimiters(Delimiters.NewLine))
+        uartdata = uartdata.substr(0, 1)
         CarCtrl()
         domusic()
         SevenColorLED()
@@ -163,42 +164,42 @@ function WaterLED () {
     Tinybit.RGB_Car_Program().show()
 }
 function SevenColorLED () {
-    if (uartdata == "G") {
+    if (uartdata == "A") {
         Tinybit.RGB_Car_Big(Tinybit.enColor.Red)
-    } else if (uartdata == "H") {
+    } else if (uartdata == "B") {
         Tinybit.RGB_Car_Big(Tinybit.enColor.Green)
-    } else if (uartdata == "I") {
+    } else if (uartdata == "C") {
         Tinybit.RGB_Car_Big(Tinybit.enColor.Blue)
-    } else if (uartdata == "J") {
+    } else if (uartdata == "D") {
         Tinybit.RGB_Car_Big(Tinybit.enColor.Yellow)
-    } else if (uartdata == "K") {
+    } else if (uartdata == "E") {
         Tinybit.RGB_Car_Big(Tinybit.enColor.Cyan)
-    } else if (uartdata == "L") {
+    } else if (uartdata == "F") {
         Tinybit.RGB_Car_Big(Tinybit.enColor.Pinkish)
-    } else if (uartdata == "M") {
+    } else if (uartdata == "0") {
         Tinybit.RGB_Car_Big(Tinybit.enColor.OFF)
     }
 }
 function CarCtrl () {
-    if (uartdata.substr(0, 1) == "A") {
-        Tinybit.CarCtrlSpeed(Tinybit.CarState.Car_Run, 150)
+    if (uartdata == "A") {
+        Tinybit.CarCtrlSpeed(Tinybit.CarState.Car_Run, 100)
         basic.showString("A")
-    } else if (uartdata.substr(0, 1) == "B") {
-        Tinybit.CarCtrlSpeed(Tinybit.CarState.Car_Back, 150)
+    } else if (uartdata == "B") {
+        Tinybit.CarCtrlSpeed(Tinybit.CarState.Car_Back, 100)
         basic.showString("B")
-    } else if (uartdata.substr(0, 1) == "C") {
-        Tinybit.CarCtrlSpeed(Tinybit.CarState.Car_Left, 150)
+    } else if (uartdata == "C") {
+        Tinybit.CarCtrlSpeed(Tinybit.CarState.Car_Left, 100)
         basic.showString("C")
-    } else if (uartdata.substr(0, 1) == "D") {
-        Tinybit.CarCtrlSpeed(Tinybit.CarState.Car_Right, 150)
+    } else if (uartdata == "D") {
+        Tinybit.CarCtrlSpeed(Tinybit.CarState.Car_Right, 100)
         basic.showString("D")
-    } else if (uartdata.substr(0, 1) == "E") {
-        Tinybit.CarCtrlSpeed(Tinybit.CarState.Car_SpinLeft, 150)
+    } else if (uartdata == "E") {
+        Tinybit.CarCtrlSpeed(Tinybit.CarState.Car_SpinLeft, 100)
         basic.showString("E")
-    } else if (uartdata.substr(0, 1) == "F") {
-        Tinybit.CarCtrlSpeed(Tinybit.CarState.Car_SpinRight, 150)
+    } else if (uartdata == "F") {
+        Tinybit.CarCtrlSpeed(Tinybit.CarState.Car_SpinRight, 100)
         basic.showString("F")
-    } else if (uartdata.substr(0, 1) == "0") {
+    } else if (uartdata == "0") {
         Tinybit.CarCtrlSpeed(Tinybit.CarState.Car_Right, 0)
         basic.showString("0")
     }
